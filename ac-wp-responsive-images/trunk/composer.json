@@ -1,0 +1,15 @@
+{
+    "name": "getdave/ac-wp-responsive-images",
+    "authors": [
+        {
+            "name": "David Smith",
+            "email": "getdavemail@gmail.com"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*"
+    }
+}
