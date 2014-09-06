@@ -57,6 +57,10 @@ class AC_WP_Responsive_Images {
 	 */
 	protected $version;
 
+
+	private static $instance = NULL;
+
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -174,12 +178,19 @@ class AC_WP_Responsive_Images {
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
+	 * If an instance of this class hasn't already been created, then
+	 * this will create an instance of the plugin and return it to the caller.
 	 *
 	 * @since    1.0.0
+	 * @return   object    A reference to an instance of this class.
 	 */
-	public function run() {
-		$this->loader->run();
+	public static function get_instance() {
+
+		if ( NULL === self::$instance ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -211,6 +222,16 @@ class AC_WP_Responsive_Images {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Primary Gateway Function a new Responsive Images
+	 * 
+	 * @param  array $args primary arguments to construct the new Responsive Image instance
+	 * @return [type]       [description]
+	 */
+	public static function get_responsive_image( $args ) {
+		return $args;
 	}
 
 }

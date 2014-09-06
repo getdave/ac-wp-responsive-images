@@ -61,10 +61,15 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-ac-wp-responsive-imag
  *
  * @since    1.0.0
  */
-function run_plugin_name() {
+function ac_wp_responsive_image( $args = array() ) {
 
-	$plugin = new AC_WP_Responsive_Images();
-	$plugin->run();
+	$plugin = AC_WP_Responsive_Images::get_instance();
+	return $plugin::get_responsive_image($args);
 
 }
-run_plugin_name();
+
+add_action( 'plugins_loaded', array( 'AC_WP_Responsive_Images', 'get_instance' ) );
+
+
+
+
