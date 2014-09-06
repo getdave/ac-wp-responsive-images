@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    AC_WP_Responsive_Images
+ * @subpackage AC_WP_Responsive_Images/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that its ready for translation.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    AC_WP_Responsive_Images
+ * @subpackage AC_WP_Responsive_Images/includes
+ * @author     David Smith getdavemail@gmail.com
  */
-class Plugin_Name_i18n {
+class AC_WP_Responsive_Images_i18n {
 
 	/**
 	 * The domain specified for this plugin.
