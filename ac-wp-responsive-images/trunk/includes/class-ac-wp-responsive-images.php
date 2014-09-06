@@ -122,6 +122,11 @@ class AC_WP_Responsive_Images {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ac-wp-responsive-images-public.php';
+		
+
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-image.php';
+		
 
 		$this->loader = new AC_WP_Responsive_Images_Loader();
 
@@ -231,7 +236,7 @@ class AC_WP_Responsive_Images {
 	 * @return [type]       [description]
 	 */
 	public static function get_responsive_image( $args ) {
-		return $args;
+		return new AC_WP_Responsive_Image( $args );
 	}
 
 }
