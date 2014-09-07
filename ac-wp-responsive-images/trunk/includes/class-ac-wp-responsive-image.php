@@ -22,10 +22,17 @@ class AC_WP_Responsive_Image {
 
 
 	/**
-	 * Placeholder for error objects
-	 *
+	 * Contains any WP_Error objects thrown 
+	 * @var Object
 	 */
-	public $error;
+	public $error = null;
+
+
+	/**
+	 * Reference to the type of Abstract RI Strategy utilised
+	 * @var Object
+	 */
+	public $ri_strategy;
 
 
 	/**
@@ -45,8 +52,11 @@ class AC_WP_Responsive_Image {
 	 * @return Object a valid responsive image object
 	 */
 	public function create() {
-		if ( !$this->errored() ) { 
-			// Start building
+		if ( !$this->errored() ) { // all args are valid...
+
+			// Get the correct strategy Class to handle the type of Responsive Image solution
+			$this->ri_strategy = $this->identify_responsive_image_type( $this->args['type'] );
+
 			return $this;
 		} else {
 			return $this->error;
@@ -92,6 +102,16 @@ class AC_WP_Responsive_Image {
 
 		// All is well
 		$this->args = $args;
+	}
+
+
+
+	private function identify_responsive_image_type( $type ) {
+	    if( $type === "img") {
+		    return "img";
+		} else {
+		    return "picture";
+		}
 	}
 
 
