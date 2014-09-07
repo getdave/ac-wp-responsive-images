@@ -236,7 +236,9 @@ class AC_WP_Responsive_Images {
 	 * @return [type]       [description]
 	 */
 	public static function get_responsive_image( $args ) {
-		return new AC_WP_Responsive_Image( $args );
+		$ri = new AC_WP_Responsive_Image( $args );
+
+		return $ri->create();
 	}
 
 }
