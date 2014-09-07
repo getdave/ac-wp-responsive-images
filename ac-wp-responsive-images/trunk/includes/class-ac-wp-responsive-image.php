@@ -45,7 +45,8 @@ class AC_WP_Responsive_Image {
 	 * @return Object a valid responsive image object
 	 */
 	public function create() {
-		if ( !$this->errored() ) { // there is no error
+		if ( !$this->errored() ) { 
+			// Start building
 			return $this;
 		} else {
 			return $this->error;
@@ -61,22 +62,33 @@ class AC_WP_Responsive_Image {
 
 		// We args passed at all?
 		if ( empty( $args ) ) {
-			$this->error = new WP_Error(__("No arguments provied"), $args);
+			$this->error = new WP_Error('arguments', __("No arguments provied"), $args);
 			return false;
 		}
 
 		// Are the args of the expected type?
 		if ( !is_array( $args ) ) {
-			$this->error = new WP_Error(__("Arguments not passed as an Array. Please check your arguments"), $args);
+			$this->error = new WP_Error('arguments', __("Arguments not passed as an Array. Please check your arguments."), $args);
 			return false;
 		}
 
 		// Were the required args passed?
 		if ( !isset( $args['image'] ) || !isset( $args['type'] ) ) {
-			$this->error = new WP_Error(__("Required arguments 'image' and 'type' not provided. Please check your arguments"), $args);
+			$this->error = new WP_Error('arguments', __("Required arguments 'image' and 'type' not provided. Please check your arguments."), $args);
 			return false;
 		}
 
+		// Check validity of "image" arg - can be an attachment ID or a URI for a source images as a string
+		if ( !is_numeric( $args['image'] ) && !is_string( $args['image'] ) ) {
+			$this->error = new WP_Error('arguments', __("The 'image' argument must be a attachment ID (int) or a valid image source URI (string). Please check your arguments."), $args);
+			return false;
+		}
+
+		// Check validity of "type" arg - can be a string of "img" or "picture"
+		if ( $args['type'] !== "img" && $args['type'] !== "picture" ) {
+			$this->error = new WP_Error('arguments', __("The 'type' argument must be one of either 'img' or 'picture. Please check your arguments."), $args);
+			return false;
+		}
 
 		// All is well
 		$this->args = $args;
