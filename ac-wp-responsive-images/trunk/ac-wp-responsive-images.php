@@ -65,6 +65,3 @@ function ac_wp_responsive_image( $args = array() ) {
  */
 add_action( 'plugins_loaded', array( 'AC_WP_Responsive_Images', 'get_instance' ) );
 
-
-
-

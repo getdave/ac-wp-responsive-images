@@ -4,8 +4,9 @@
  * Autoloading Class
  *
  * Autoloads classes as required
- * Uses a modified standard autoload pattern to match 
- * WordPress' coding standards as per
+ * Uses a modified standard autoload pattern to match
+ * WordPress' coding standards as per examples from:
+ *
  * http://widthauto.com/autoload-classes-wordpress-plugin/
  *
  *
@@ -24,7 +25,7 @@ class AC_WP_Responsive_Image_Autoloader {
     }
 
     private function include_autoloader( $class ) {
-  
+
 	    $class = strtolower( str_replace('_', '-', $class) );
 	    if ( file_exists ( plugin_dir_path( __FILE__ ) . 'includes/class-' . $class . '.php' ) ){
 	        include( plugin_dir_path( __FILE__ ) . 'includes/class-' . $class . '.php');
