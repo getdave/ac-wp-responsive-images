@@ -104,28 +104,31 @@ class AC_WP_Responsive_Images {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-images-loader.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-images-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-images-i18n.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-images-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ac-wp-responsive-images-admin.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ac-wp-responsive-images-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ac-wp-responsive-images-public.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ac-wp-responsive-images-public.php';
 		
 
 		
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-image.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ac-wp-responsive-image.php';
+		
+
+
 		
 
 		$this->loader = new AC_WP_Responsive_Images_Loader();

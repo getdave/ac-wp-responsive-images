@@ -31,14 +31,11 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * The code that runs during plugin activation.
+ * Register an Autoloader for the Plugin to avoid having to manually
+ * manage file includes and dependencies
  */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-ac-wp-responsive-images-activator.php';
-
-/**
- * The code that runs during plugin deactivation.
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-ac-wp-responsive-images-deactivator.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-ac-wp-responsive-images-autoloader.php';
+new AC_WP_Responsive_Image_Autoloader();
 
 /** This action is documented in includes/class-ac-wp-responsive-images-activator.php */
 register_activation_hook( __FILE__, array( 'AC_WP_Responsive_Images_Activator', 'activate' ) );
@@ -46,28 +43,26 @@ register_activation_hook( __FILE__, array( 'AC_WP_Responsive_Images_Activator', 
 /** This action is documented in includes/class-ac-wp-responsive-images-deactivator.php */
 register_deactivation_hook( __FILE__, array( 'AC_WP_Responsive_Images_Deactivator', 'deactivate' ) );
 
-/**
- * The core plugin class that is used to define internationalization,
- * dashboard-specific hooks, and public-facing site hooks.
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-ac-wp-responsive-images.php';
 
 /**
- * Begins execution of the plugin.
+ * Primary View Helper/Utility function for Plugin
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
+ * Since WordPress favours globally defined functions we add one here so
+ * that it is available to all WordPress templates.
+ * Acts as a wrapper around the Plugin's static method which in turn
  *
  * @since    1.0.0
  */
 function ac_wp_responsive_image( $args = array() ) {
-
-	//$plugin = AC_WP_Responsive_Images::get_instance();
 	return AC_WP_Responsive_Images::get_responsive_image($args);
-
 }
 
+/**
+ * Begins execution of the plugin.
+ *
+ * Since the Plugin is a Singleton we don't __construct. Instead we call the
+ * static ::get_instance method to bootstrap the Plugin.
+ */
 add_action( 'plugins_loaded', array( 'AC_WP_Responsive_Images', 'get_instance' ) );
 
 
